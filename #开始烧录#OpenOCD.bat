@@ -1,10 +1,10 @@
 @echo off
 :Init
-Set tle=版本：SDK17.1 11d28f72
 set ver=20211105-11d28f72
+Set tle=版本:SDK17.1 %ver:~-8%
 Set var=0
 Set PATH=%PATH%%~dp0%openocd;
-cd pyocd
+cd openocd
 
 :Start
 Title CMSIS-DAP烧录 %tle%
@@ -14,7 +14,7 @@ Color 3F
 
 :Menu
 cls
-echo 「 完整固件烧录 %ver% 」
+echo 「 完整固件烧录 %tle% 」
 echo.
 echo 选项:
 echo       [1].   烧录固件 Farad69
@@ -218,7 +218,6 @@ Goto MENUPLANCK
 :FLASH69B
 echo 正在刷写Farad69 Rev.B固件，请稍后...
 openocd -f nrf52.cfg -c init -c "reset init" -c "nrf5 mass_erase" -c "program ..\hex\farad69-b-nrf52_all-%ver%.hex verify" -c reset -c exit
-pyocd cmd -t nrf52 -c reset
 pause
 echo 按任意键继续
 Goto End
@@ -226,7 +225,6 @@ Goto End
 :FLASH69C
 echo 正在刷写Farad69 Rev.C固件，请稍后...
 openocd -f nrf52.cfg -c init -c "reset init" -c "nrf5 mass_erase" -c "program ..\hex\farad69-c-nrf52_all-%ver%.hex verify" -c reset -c exit
-pyocd cmd -t nrf52 -c reset
 pause
 echo 按任意键继续
 Goto End
@@ -234,7 +232,6 @@ Goto End
 :FLASH50A
 echo 正在刷写Omega50 Rev.A固件，请稍后...
 openocd -f nrf52.cfg -c init -c "reset init" -c "nrf5 mass_erase" -c "program ..\hex\Omega50-a-nrf52_all-%ver%.hex verify" -c reset -c exit
-pyocd cmd -t nrf52 -c reset
 pause
 echo 按任意键继续
 Goto End
@@ -242,7 +239,6 @@ Goto End
 :FLASH50B
 echo 正在刷写Omega50 Rev.B固件，请稍后...
 openocd -f nrf52.cfg -c init -c "reset init" -c "nrf5 mass_erase" -c "program ..\hex\Omega50-b-nrf52_all-%ver%.hex verify" -c reset -c exit
-pyocd cmd -t nrf52 -c reset
 pause
 echo 按任意键继续
 Goto End
@@ -250,7 +246,6 @@ Goto End
 :FLASH60E
 echo 正在刷写GT BLE60 Rev.E固件，请稍后...
 openocd -f nrf52.cfg -c init -c "reset init" -c "nrf5 mass_erase" -c "program ..\hex\gt-ble60-e-nrf52_all-%ver%.hex verify" -c reset -c exit
-pyocd cmd -t nrf52 -c reset
 pause
 echo 按任意键继续
 Goto End
@@ -258,7 +253,6 @@ Goto End
 :FLASH60F
 echo 正在刷写GT BLE60 Rev.F固件，请稍后...
 openocd -f nrf52.cfg -c init -c "reset init" -c "nrf5 mass_erase" -c "program ..\hex\gt-ble60-f-nrf52_all-%ver%.hex verify" -c reset -c exit
-pyocd cmd -t nrf52 -c reset
 pause
 echo 按任意键继续
 Goto End
@@ -266,7 +260,6 @@ Goto End
 :FLASH45C
 echo 正在刷写Omega45 Rev.C固件，请稍后...
 openocd -f nrf52.cfg -c init -c "reset init" -c "nrf5 mass_erase" -c "program ..\hex\Omega45-c-nrf52_all-%ver%.hex verify" -c reset -c exit
-pyocd cmd -t nrf52 -c reset
 pause
 echo 按任意键继续
 Goto End
@@ -274,7 +267,6 @@ Goto End
 :FLASH45D
 echo 正在刷写Omega45 Rev.D固件，请稍后...
 openocd -f nrf52.cfg -c init -c "reset init" -c "nrf5 mass_erase" -c "program ..\hex\Omega45-d-nrf52_all-%ver%.hex verify" -c reset -c exit
-pyocd cmd -t nrf52 -c reset
 pause
 echo 按任意键继续
 Goto End
@@ -282,7 +274,6 @@ Goto End
 :FLASH45E
 echo 正在刷写Omega45 Rev.E固件，请稍后...
 openocd -f nrf52.cfg -c init -c "reset init" -c "nrf5 mass_erase" -c "program ..\hex\Omega45-e-nrf52_all-%ver%.hex verify" -c reset -c exit
-pyocd cmd -t nrf52 -c reset
 pause
 echo 按任意键继续
 Goto End
@@ -290,7 +281,6 @@ Goto End
 :FLASH45F
 echo 正在刷写Omega45 Rev.F固件，请稍后...
 openocd -f nrf52.cfg -c init -c "reset init" -c "nrf5 mass_erase" -c "program ..\hex\Omega45-f-nrf52_all-%ver%.hex verify" -c reset -c exit
-pyocd cmd -t nrf52 -c reset
 pause
 echo 按任意键继续
 Goto End
@@ -298,7 +288,6 @@ Goto End
 :FLASH84
 echo 正在刷写Omega84固件，请稍后...
 openocd -f nrf52.cfg -c init -c "reset init" -c "nrf5 mass_erase" -c "program ..\hex\Omega84-nrf52_all-%ver%.hex verify" -c reset -c exit
-pyocd cmd -t nrf52 -c reset
 pause
 echo 按任意键继续
 Goto End
@@ -306,7 +295,6 @@ Goto End
 :FLASH64
 echo 正在刷写Omega64固件，请稍后...
 openocd -f nrf52.cfg -c init -c "reset init" -c "nrf5 mass_erase" -c "program ..\hex\Omega64-nrf52_all-%ver%.hex verify" -c reset -c exit
-pyocd cmd -t nrf52 -c reset
 pause
 echo 按任意键继续
 Goto End
@@ -314,7 +302,6 @@ Goto End
 :FLASHNEWHOPE64
 echo 正在刷写NewHope64固件，请稍后...
 openocd -f nrf52.cfg -c init -c "reset init" -c "nrf5 mass_erase" -c "program ..\hex\newhope64-nrf52_all-%ver%.hex verify" -c reset -c exit
-pyocd cmd -t nrf52 -c reset
 pause
 echo 按任意键继续
 Goto End
@@ -322,7 +309,6 @@ Goto End
 :FLASHPADA
 echo 正在刷写GT-Pad Rev.A固件，请稍后...
 openocd -f nrf52.cfg -c init -c "reset init" -c "nrf5 mass_erase" -c "program ..\hex\gt-pad-a-nrf52_all-%ver%.hex verify" -c reset -c exit
-pyocd cmd -t nrf52 -c reset
 pause
 echo 按任意键继续
 Goto End
@@ -330,7 +316,6 @@ Goto End
 :FLASHPADB
 echo 正在刷写GT-Pad Rev.B固件，请稍后...
 openocd -f nrf52.cfg -c init -c "reset init" -c "nrf5 mass_erase" -c "program ..\hex\gt-pad-b-nrf52_all-%ver%.hex verify" -c reset -c exit
-pyocd cmd -t nrf52 -c reset
 pause
 echo 按任意键继续
 Goto End
@@ -338,7 +323,6 @@ Goto End
 :FLASHPLANCK52832
 echo 正在刷写GT-PLANCK nRF52832芯片版固件，请稍后...
 openocd -f nrf52.cfg -c init -c "reset init" -c "nrf5 mass_erase" -c "program ..\hex\gt-planck-a-nrf52_all-%ver%.hex verify" -c reset -c exit
-pyocd cmd -t nrf52 -c reset
 pause
 echo 按任意键继续
 Goto End
@@ -346,7 +330,6 @@ Goto End
 :FLASHPLANCK52811
 echo 正在刷写GT-PLANCK nRF52811芯片版固件，请稍后...
 openocd -f nrf52.cfg -c init -c "reset init" -c "nrf5 mass_erase" -c "program ..\hex\gt-planck-a-nrf52811_kbd_with_sd-%ver%.hex verify" -c reset -c exit
-pyocd cmd -t nrf52 -c reset
 pause
 echo 按任意键继续
 Goto End
@@ -354,7 +337,6 @@ Goto End
 :TEST
 echo 正在刷写测试固件，请稍后...
 openocd -f nrf52.cfg -c init -c "reset init" -c "nrf5 mass_erase" -c "program ..\hex\nrf52_all.hex
-pyocd cmd -t nrf52 -c reset
 
 pause
 echo 按任意键继续
