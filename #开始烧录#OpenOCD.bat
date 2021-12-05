@@ -1,50 +1,52 @@
 @echo off
 :Init
-set ver=20211105-11d28f72
-Set tle=°æ±¾:SDK17.1 %ver:~-8%
+REM ======è®¾ç½®ç¼–ç ä¸ºutf8======
+chcp 65001
+set ver=20211123-1162af43
+Set tle=ç‰ˆæœ¬:SDK17.1 %ver:~-8%
 Set var=0
 Set PATH=%PATH%%~dp0%openocd;
 cd openocd
 
 :Start
-Title CMSIS-DAPÉÕÂ¼ %tle%
+Title CMSIS-DAPçƒ§å½• %tle%
 MODE con: Cols=50 Lines=32
 Color 3F
 
 
 :Menu
 cls
-echo ¡¸ ÍêÕû¹Ì¼şÉÕÂ¼ %tle% ¡¹
+echo ã€Œ å®Œæ•´å›ºä»¶çƒ§å½• %tle% ã€
 echo.
-echo Ñ¡Ïî:
-echo       [1].   ÉÕÂ¼¹Ì¼ş Farad69
+echo é€‰é¡¹:
+echo       [1].   çƒ§å½•å›ºä»¶ Farad69
 echo.
-echo       [2].   ÉÕÂ¼¹Ì¼ş Omega50
+echo       [2].   çƒ§å½•å›ºä»¶ Omega50
 echo.
-echo       [3].   ÉÕÂ¼¹Ì¼ş GT BLE60
+echo       [3].   çƒ§å½•å›ºä»¶ GT BLE60
 echo.
-echo       [4].   ÉÕÂ¼¹Ì¼ş Omega45
+echo       [4].   çƒ§å½•å›ºä»¶ Omega45
 echo.
-echo       [5].   ÉÕÂ¼¹Ì¼ş Omega84
+echo       [5].   çƒ§å½•å›ºä»¶ Omega84
 echo.
-echo       [6].   ÉÕÂ¼¹Ì¼ş Omega64
+echo       [6].   çƒ§å½•å›ºä»¶ Omega64
 echo.
-echo       [7].   ÉÕÂ¼¹Ì¼ş NewHope64
+echo       [7].   çƒ§å½•å›ºä»¶ NewHope64
 echo.
-echo       [8].   ÉÕÂ¼¹Ì¼ş GT PAD
+echo       [8].   çƒ§å½•å›ºä»¶ GT PAD
 echo.
-echo       [9].   ÉÕÂ¼¹Ì¼ş GT Planck
+echo       [9].   çƒ§å½•å›ºä»¶ GT Planck
 echo.
-echo       [L].   ÏÔÊ¾ÉÕÂ¼Æ÷ĞÅÏ¢
+echo       [L].   æ˜¾ç¤ºçƒ§å½•å™¨ä¿¡æ¯
 echo.
-echo       [C].   ÊÖ¶¯ÊäÈëÃüÁî
+echo       [C].   æ‰‹åŠ¨è¾“å…¥å‘½ä»¤
 echo.
-echo       [£Ñ].  ÍË³ö
+echo       [ï¼±].  é€€å‡º
 echo.
 echo ---------------------------------------
-if %var% neq 0 echo (ÊäÈëÎŞĞ§ÇëÖØĞÂÊäÈë)
+if %var% neq 0 echo (è¾“å…¥æ— æ•ˆè¯·é‡æ–°è¾“å…¥)
 Set choice=
-Set /p choice=Ñ¡Ôñ: 
+Set /p choice=é€‰æ‹©: 
 Set "choice=%choice:"=%"
 if "%choice:~-1%"=="=" Goto Menu
 if "%choice%"=="" Goto Menu
@@ -66,19 +68,19 @@ Goto Menu
 
 :MENUFARAD69
 cls
-echo ¡¸ Ñ¡Ôñ Farad69 °æ±¾ ¡¹
+echo ã€Œ é€‰æ‹© Farad69 ç‰ˆæœ¬ ã€
 echo.
-echo Ñ¡Ïî:
-echo       [1].   ÉÕÂ¼¹Ì¼ş Farad69 rev.B
+echo é€‰é¡¹:
+echo       [1].   çƒ§å½•å›ºä»¶ Farad69 rev.B
 echo.
-echo       [2].   ÉÕÂ¼¹Ì¼ş Farad69 rev.C
+echo       [2].   çƒ§å½•å›ºä»¶ Farad69 rev.C
 echo.
-echo       [R].   ·µ»ØÉÏÒ»¼¶
+echo       [R].   è¿”å›ä¸Šä¸€çº§
 echo.
 echo ---------------------------------------
-if %var% neq 0 echo (ÊäÈëÎŞĞ§ÇëÖØĞÂÊäÈë)
+if %var% neq 0 echo (è¾“å…¥æ— æ•ˆè¯·é‡æ–°è¾“å…¥)
 Set choice=
-Set /p choice=Ñ¡Ôñ: 
+Set /p choice=é€‰æ‹©: 
 Set "choice=%choice:"=%"
 if "%choice:~-1%"=="=" Goto Menu
 if "%choice%"=="" Goto Menu
@@ -90,19 +92,19 @@ Goto MENUFARAD69
 
 :MENUOMEGA50
 cls
-echo ¡¸ Ñ¡Ôñ Omega50 °æ±¾ ¡¹
+echo ã€Œ é€‰æ‹© Omega50 ç‰ˆæœ¬ ã€
 echo.
-echo Ñ¡Ïî:
-echo       [1].   ÉÕÂ¼¹Ì¼ş Omega50 rev.A
+echo é€‰é¡¹:
+echo       [1].   çƒ§å½•å›ºä»¶ Omega50 rev.A
 echo.
-echo       [2].   ÉÕÂ¼¹Ì¼ş Omega50 rev.B
+echo       [2].   çƒ§å½•å›ºä»¶ Omega50 rev.B
 echo.
-echo       [R].   ·µ»ØÉÏÒ»¼¶
+echo       [R].   è¿”å›ä¸Šä¸€çº§
 echo.
 echo ---------------------------------------
-if %var% neq 0 echo (ÊäÈëÎŞĞ§ÇëÖØĞÂÊäÈë)
+if %var% neq 0 echo (è¾“å…¥æ— æ•ˆè¯·é‡æ–°è¾“å…¥)
 Set choice=
-Set /p choice=Ñ¡Ôñ: 
+Set /p choice=é€‰æ‹©: 
 Set "choice=%choice:"=%"
 if "%choice:~-1%"=="=" Goto Menu
 if "%choice%"=="" Goto Menu
@@ -114,19 +116,19 @@ Goto MENUOMEGA50
 
 :MENUBLE60
 cls
-echo ¡¸ Ñ¡Ôñ GT BLE60 °æ±¾ ¡¹
+echo ã€Œ é€‰æ‹© GT BLE60 ç‰ˆæœ¬ ã€
 echo.
-echo Ñ¡Ïî:
-echo       [1].   ÉÕÂ¼¹Ì¼ş GT BLE60 rev.E
+echo é€‰é¡¹:
+echo       [1].   çƒ§å½•å›ºä»¶ GT BLE60 rev.E
 echo.
-echo       [2].   ÉÕÂ¼¹Ì¼ş GT BLE60 rev.F
+echo       [2].   çƒ§å½•å›ºä»¶ GT BLE60 rev.F
 echo.
-echo       [R].   ·µ»ØÉÏÒ»¼¶
+echo       [R].   è¿”å›ä¸Šä¸€çº§
 echo.
 echo ---------------------------------------
-if %var% neq 0 echo (ÊäÈëÎŞĞ§ÇëÖØĞÂÊäÈë)
+if %var% neq 0 echo (è¾“å…¥æ— æ•ˆè¯·é‡æ–°è¾“å…¥)
 Set choice=
-Set /p choice=Ñ¡Ôñ: 
+Set /p choice=é€‰æ‹©: 
 Set "choice=%choice:"=%"
 if "%choice:~-1%"=="=" Goto Menu
 if "%choice%"=="" Goto Menu
@@ -138,23 +140,23 @@ Goto MENUBLE60
 
 :MENUOMEGA45
 cls
-echo ¡¸ Ñ¡Ôñ Omega45 °æ±¾ ¡¹
+echo ã€Œ é€‰æ‹© Omega45 ç‰ˆæœ¬ ã€
 echo.
-echo Ñ¡Ïî:
-echo       [1].   ÉÕÂ¼¹Ì¼ş Omega45 rev.C
+echo é€‰é¡¹:
+echo       [1].   çƒ§å½•å›ºä»¶ Omega45 rev.C
 echo.
-echo       [2].   ÉÕÂ¼¹Ì¼ş Omega45 rev.D
+echo       [2].   çƒ§å½•å›ºä»¶ Omega45 rev.D
 echo.
-echo       [3].   ÉÕÂ¼¹Ì¼ş Omega45 rev.E
+echo       [3].   çƒ§å½•å›ºä»¶ Omega45 rev.E
 echo.
-echo       [4].   ÉÕÂ¼¹Ì¼ş Omega45 rev.F
+echo       [4].   çƒ§å½•å›ºä»¶ Omega45 rev.F
 echo.
-echo       [R].   ·µ»ØÉÏÒ»¼¶
+echo       [R].   è¿”å›ä¸Šä¸€çº§
 echo.
 echo ---------------------------------------
-if %var% neq 0 echo (ÊäÈëÎŞĞ§ÇëÖØĞÂÊäÈë)
+if %var% neq 0 echo (è¾“å…¥æ— æ•ˆè¯·é‡æ–°è¾“å…¥)
 Set choice=
-Set /p choice=Ñ¡Ôñ: 
+Set /p choice=é€‰æ‹©: 
 Set "choice=%choice:"=%"
 if "%choice:~-1%"=="=" Goto Menu
 if "%choice%"=="" Goto Menu
@@ -168,19 +170,19 @@ Goto MENUOMEGA45
 
 :MENUPAD
 cls
-echo ¡¸ Ñ¡Ôñ GT PAD °æ±¾ ¡¹
+echo ã€Œ é€‰æ‹© GT PAD ç‰ˆæœ¬ ã€
 echo.
-echo Ñ¡Ïî:
-echo       [1].   ÉÕÂ¼¹Ì¼ş GT PAD rev.A
+echo é€‰é¡¹:
+echo       [1].   çƒ§å½•å›ºä»¶ GT PAD rev.A
 echo.
-echo       [2].   ÉÕÂ¼¹Ì¼ş GT PAD rev.B
+echo       [2].   çƒ§å½•å›ºä»¶ GT PAD rev.B
 echo.
-echo       [R].   ·µ»ØÉÏÒ»¼¶
+echo       [R].   è¿”å›ä¸Šä¸€çº§
 echo.
 echo ---------------------------------------
-if %var% neq 0 echo (ÊäÈëÎŞĞ§ÇëÖØĞÂÊäÈë)
+if %var% neq 0 echo (è¾“å…¥æ— æ•ˆè¯·é‡æ–°è¾“å…¥)
 Set choice=
-Set /p choice=Ñ¡Ôñ: 
+Set /p choice=é€‰æ‹©: 
 Set "choice=%choice:"=%"
 if "%choice:~-1%"=="=" Goto Menu
 if "%choice%"=="" Goto Menu
@@ -192,19 +194,19 @@ Goto MENUPAD
 
 :MENUPLANCK
 cls
-echo ¡¸ Ñ¡ÔñGT PlanckµÄĞ¾Æ¬°æ±¾ ¡¹
+echo ã€Œ é€‰æ‹©GT Planckçš„èŠ¯ç‰‡ç‰ˆæœ¬ ã€
 echo.
-echo Ñ¡Ïî:
-echo       [1].   ÉÕÂ¼¹Ì¼ş nRF52832Ğ¾Æ¬°æ
+echo é€‰é¡¹:
+echo       [1].   çƒ§å½•å›ºä»¶ nRF52832èŠ¯ç‰‡ç‰ˆ
 echo.
-echo       [2].   ÉÕÂ¼¹Ì¼ş nRF52811Ğ¾Æ¬°æ
+echo       [2].   çƒ§å½•å›ºä»¶ nRF52811èŠ¯ç‰‡ç‰ˆ
 echo.
-echo       [R].   ·µ»ØÉÏÒ»¼¶
+echo       [R].   è¿”å›ä¸Šä¸€çº§
 echo.
 echo ---------------------------------------
-if %var% neq 0 echo (ÊäÈëÎŞĞ§ÇëÖØĞÂÊäÈë)
+if %var% neq 0 echo (è¾“å…¥æ— æ•ˆè¯·é‡æ–°è¾“å…¥)
 Set choice=
-Set /p choice=Ñ¡Ôñ: 
+Set /p choice=é€‰æ‹©: 
 Set "choice=%choice:"=%"
 if "%choice:~-1%"=="=" Goto Menu
 if "%choice%"=="" Goto Menu
@@ -216,138 +218,138 @@ Goto MENUPLANCK
 
 
 :FLASH69B
-echo ÕıÔÚË¢Ğ´Farad69 Rev.B¹Ì¼ş£¬ÇëÉÔºó...
+echo æ­£åœ¨åˆ·å†™Farad69 Rev.Bå›ºä»¶ï¼Œè¯·ç¨å...
 openocd -f nrf52.cfg -c init -c "reset init" -c "nrf5 mass_erase" -c "program ..\hex\farad69-b-nrf52_all-%ver%.hex verify" -c reset -c exit
 pause
-echo °´ÈÎÒâ¼ü¼ÌĞø
+echo æŒ‰ä»»æ„é”®ç»§ç»­
 Goto End
 
 :FLASH69C
-echo ÕıÔÚË¢Ğ´Farad69 Rev.C¹Ì¼ş£¬ÇëÉÔºó...
+echo æ­£åœ¨åˆ·å†™Farad69 Rev.Cå›ºä»¶ï¼Œè¯·ç¨å...
 openocd -f nrf52.cfg -c init -c "reset init" -c "nrf5 mass_erase" -c "program ..\hex\farad69-c-nrf52_all-%ver%.hex verify" -c reset -c exit
 pause
-echo °´ÈÎÒâ¼ü¼ÌĞø
+echo æŒ‰ä»»æ„é”®ç»§ç»­
 Goto End
 
 :FLASH50A
-echo ÕıÔÚË¢Ğ´Omega50 Rev.A¹Ì¼ş£¬ÇëÉÔºó...
+echo æ­£åœ¨åˆ·å†™Omega50 Rev.Aå›ºä»¶ï¼Œè¯·ç¨å...
 openocd -f nrf52.cfg -c init -c "reset init" -c "nrf5 mass_erase" -c "program ..\hex\Omega50-a-nrf52_all-%ver%.hex verify" -c reset -c exit
 pause
-echo °´ÈÎÒâ¼ü¼ÌĞø
+echo æŒ‰ä»»æ„é”®ç»§ç»­
 Goto End
 
 :FLASH50B
-echo ÕıÔÚË¢Ğ´Omega50 Rev.B¹Ì¼ş£¬ÇëÉÔºó...
+echo æ­£åœ¨åˆ·å†™Omega50 Rev.Bå›ºä»¶ï¼Œè¯·ç¨å...
 openocd -f nrf52.cfg -c init -c "reset init" -c "nrf5 mass_erase" -c "program ..\hex\Omega50-b-nrf52_all-%ver%.hex verify" -c reset -c exit
 pause
-echo °´ÈÎÒâ¼ü¼ÌĞø
+echo æŒ‰ä»»æ„é”®ç»§ç»­
 Goto End
 
 :FLASH60E
-echo ÕıÔÚË¢Ğ´GT BLE60 Rev.E¹Ì¼ş£¬ÇëÉÔºó...
+echo æ­£åœ¨åˆ·å†™GT BLE60 Rev.Eå›ºä»¶ï¼Œè¯·ç¨å...
 openocd -f nrf52.cfg -c init -c "reset init" -c "nrf5 mass_erase" -c "program ..\hex\gt-ble60-e-nrf52_all-%ver%.hex verify" -c reset -c exit
 pause
-echo °´ÈÎÒâ¼ü¼ÌĞø
+echo æŒ‰ä»»æ„é”®ç»§ç»­
 Goto End
 
 :FLASH60F
-echo ÕıÔÚË¢Ğ´GT BLE60 Rev.F¹Ì¼ş£¬ÇëÉÔºó...
+echo æ­£åœ¨åˆ·å†™GT BLE60 Rev.Få›ºä»¶ï¼Œè¯·ç¨å...
 openocd -f nrf52.cfg -c init -c "reset init" -c "nrf5 mass_erase" -c "program ..\hex\gt-ble60-f-nrf52_all-%ver%.hex verify" -c reset -c exit
 pause
-echo °´ÈÎÒâ¼ü¼ÌĞø
+echo æŒ‰ä»»æ„é”®ç»§ç»­
 Goto End
 
 :FLASH45C
-echo ÕıÔÚË¢Ğ´Omega45 Rev.C¹Ì¼ş£¬ÇëÉÔºó...
+echo æ­£åœ¨åˆ·å†™Omega45 Rev.Cå›ºä»¶ï¼Œè¯·ç¨å...
 openocd -f nrf52.cfg -c init -c "reset init" -c "nrf5 mass_erase" -c "program ..\hex\Omega45-c-nrf52_all-%ver%.hex verify" -c reset -c exit
 pause
-echo °´ÈÎÒâ¼ü¼ÌĞø
+echo æŒ‰ä»»æ„é”®ç»§ç»­
 Goto End
 
 :FLASH45D
-echo ÕıÔÚË¢Ğ´Omega45 Rev.D¹Ì¼ş£¬ÇëÉÔºó...
+echo æ­£åœ¨åˆ·å†™Omega45 Rev.Då›ºä»¶ï¼Œè¯·ç¨å...
 openocd -f nrf52.cfg -c init -c "reset init" -c "nrf5 mass_erase" -c "program ..\hex\Omega45-d-nrf52_all-%ver%.hex verify" -c reset -c exit
 pause
-echo °´ÈÎÒâ¼ü¼ÌĞø
+echo æŒ‰ä»»æ„é”®ç»§ç»­
 Goto End
 
 :FLASH45E
-echo ÕıÔÚË¢Ğ´Omega45 Rev.E¹Ì¼ş£¬ÇëÉÔºó...
+echo æ­£åœ¨åˆ·å†™Omega45 Rev.Eå›ºä»¶ï¼Œè¯·ç¨å...
 openocd -f nrf52.cfg -c init -c "reset init" -c "nrf5 mass_erase" -c "program ..\hex\Omega45-e-nrf52_all-%ver%.hex verify" -c reset -c exit
 pause
-echo °´ÈÎÒâ¼ü¼ÌĞø
+echo æŒ‰ä»»æ„é”®ç»§ç»­
 Goto End
 
 :FLASH45F
-echo ÕıÔÚË¢Ğ´Omega45 Rev.F¹Ì¼ş£¬ÇëÉÔºó...
+echo æ­£åœ¨åˆ·å†™Omega45 Rev.Få›ºä»¶ï¼Œè¯·ç¨å...
 openocd -f nrf52.cfg -c init -c "reset init" -c "nrf5 mass_erase" -c "program ..\hex\Omega45-f-nrf52_all-%ver%.hex verify" -c reset -c exit
 pause
-echo °´ÈÎÒâ¼ü¼ÌĞø
+echo æŒ‰ä»»æ„é”®ç»§ç»­
 Goto End
 
 :FLASH84
-echo ÕıÔÚË¢Ğ´Omega84¹Ì¼ş£¬ÇëÉÔºó...
+echo æ­£åœ¨åˆ·å†™Omega84å›ºä»¶ï¼Œè¯·ç¨å...
 openocd -f nrf52.cfg -c init -c "reset init" -c "nrf5 mass_erase" -c "program ..\hex\Omega84-nrf52_all-%ver%.hex verify" -c reset -c exit
 pause
-echo °´ÈÎÒâ¼ü¼ÌĞø
+echo æŒ‰ä»»æ„é”®ç»§ç»­
 Goto End
 
 :FLASH64
-echo ÕıÔÚË¢Ğ´Omega64¹Ì¼ş£¬ÇëÉÔºó...
+echo æ­£åœ¨åˆ·å†™Omega64å›ºä»¶ï¼Œè¯·ç¨å...
 openocd -f nrf52.cfg -c init -c "reset init" -c "nrf5 mass_erase" -c "program ..\hex\Omega64-nrf52_all-%ver%.hex verify" -c reset -c exit
 pause
-echo °´ÈÎÒâ¼ü¼ÌĞø
+echo æŒ‰ä»»æ„é”®ç»§ç»­
 Goto End
 
 :FLASHNEWHOPE64
-echo ÕıÔÚË¢Ğ´NewHope64¹Ì¼ş£¬ÇëÉÔºó...
+echo æ­£åœ¨åˆ·å†™NewHope64å›ºä»¶ï¼Œè¯·ç¨å...
 openocd -f nrf52.cfg -c init -c "reset init" -c "nrf5 mass_erase" -c "program ..\hex\newhope64-nrf52_all-%ver%.hex verify" -c reset -c exit
 pause
-echo °´ÈÎÒâ¼ü¼ÌĞø
+echo æŒ‰ä»»æ„é”®ç»§ç»­
 Goto End
 
 :FLASHPADA
-echo ÕıÔÚË¢Ğ´GT-Pad Rev.A¹Ì¼ş£¬ÇëÉÔºó...
+echo æ­£åœ¨åˆ·å†™GT-Pad Rev.Aå›ºä»¶ï¼Œè¯·ç¨å...
 openocd -f nrf52.cfg -c init -c "reset init" -c "nrf5 mass_erase" -c "program ..\hex\gt-pad-a-nrf52_all-%ver%.hex verify" -c reset -c exit
 pause
-echo °´ÈÎÒâ¼ü¼ÌĞø
+echo æŒ‰ä»»æ„é”®ç»§ç»­
 Goto End
 
 :FLASHPADB
-echo ÕıÔÚË¢Ğ´GT-Pad Rev.B¹Ì¼ş£¬ÇëÉÔºó...
+echo æ­£åœ¨åˆ·å†™GT-Pad Rev.Bå›ºä»¶ï¼Œè¯·ç¨å...
 openocd -f nrf52.cfg -c init -c "reset init" -c "nrf5 mass_erase" -c "program ..\hex\gt-pad-b-nrf52_all-%ver%.hex verify" -c reset -c exit
 pause
-echo °´ÈÎÒâ¼ü¼ÌĞø
+echo æŒ‰ä»»æ„é”®ç»§ç»­
 Goto End
 
 :FLASHPLANCK52832
-echo ÕıÔÚË¢Ğ´GT-PLANCK nRF52832Ğ¾Æ¬°æ¹Ì¼ş£¬ÇëÉÔºó...
+echo æ­£åœ¨åˆ·å†™GT-PLANCK nRF52832èŠ¯ç‰‡ç‰ˆå›ºä»¶ï¼Œè¯·ç¨å...
 openocd -f nrf52.cfg -c init -c "reset init" -c "nrf5 mass_erase" -c "program ..\hex\gt-planck-a-nrf52_all-%ver%.hex verify" -c reset -c exit
 pause
-echo °´ÈÎÒâ¼ü¼ÌĞø
+echo æŒ‰ä»»æ„é”®ç»§ç»­
 Goto End
 
 :FLASHPLANCK52811
-echo ÕıÔÚË¢Ğ´GT-PLANCK nRF52811Ğ¾Æ¬°æ¹Ì¼ş£¬ÇëÉÔºó...
+echo æ­£åœ¨åˆ·å†™GT-PLANCK nRF52811èŠ¯ç‰‡ç‰ˆå›ºä»¶ï¼Œè¯·ç¨å...
 openocd -f nrf52.cfg -c init -c "reset init" -c "nrf5 mass_erase" -c "program ..\hex\gt-planck-a-nrf52811_kbd_with_sd-%ver%.hex verify" -c reset -c exit
 pause
-echo °´ÈÎÒâ¼ü¼ÌĞø
+echo æŒ‰ä»»æ„é”®ç»§ç»­
 Goto End
 
 :TEST
-echo ÕıÔÚË¢Ğ´²âÊÔ¹Ì¼ş£¬ÇëÉÔºó...
+echo æ­£åœ¨åˆ·å†™æµ‹è¯•å›ºä»¶ï¼Œè¯·ç¨å...
 openocd -f nrf52.cfg -c init -c "reset init" -c "nrf5 mass_erase" -c "program ..\hex\nrf52_all.hex
 
 pause
-echo °´ÈÎÒâ¼ü¼ÌĞø
+echo æŒ‰ä»»æ„é”®ç»§ç»­
 Goto End
 
 :LIST
 MODE con: Cols=60 Lines=40
-echo ²é¿´ÊÇ·ñÕı³£ÏÔÊ¾ÉÕÂ¼Æ÷
+echo æŸ¥çœ‹æ˜¯å¦æ­£å¸¸æ˜¾ç¤ºçƒ§å½•å™¨
 openocd -c "adapter driver cmsis-dap" -c "init;cmsis-dap info"
 pause
-echo °´ÈÎÒâ¼ü¼ÌĞø
+echo æŒ‰ä»»æ„é”®ç»§ç»­
 Goto End
 
 :GOCMD
@@ -361,7 +363,7 @@ if "%choice%" neq "" (
     cls
     Color FF
     if "%choice%" neq "3" (
-        echo ²Ù×÷Íê³É !!!
+        echo æ“ä½œå®Œæˆ !!!
     )
     Goto Start
 )
