@@ -3,13 +3,13 @@
 :Init
 REM ======设置编码为utf8======
 chcp 65001
-set ver=20211123-1162af43
+set ver=20220116-11dd5b41
 Set tle=版本:SDK17.1 %ver:~-8%
 Set var=0
 
 :Start
 Title CMSIS-DAP烧录 %tle%
-MODE con: Cols=50 Lines=32
+MODE con: Cols=50 Lines=36
 Color 3F
 
 REM ======首先选择烧录工具======
@@ -69,7 +69,7 @@ Goto Menu
 REM ======键盘选择菜单======
 :Menu
 Title CMSIS-DAP烧录 %tle%
-MODE con: Cols=50 Lines=32
+MODE con: Cols=50 Lines=36
 Color 3F
 cls
 echo 「 完整固件烧录 %tle% 」
@@ -93,6 +93,10 @@ echo       [8].   烧录固件 GT PAD
 echo.
 echo       [9].   烧录固件 GT Planck
 echo.
+echo       [10].  烧录固件 Omega40
+echo.
+echo       [11].  烧录固件 GT Volta9
+echo.
 echo       [L].   显示烧录器信息
 echo.
 echo       [C].   手动输入命令
@@ -115,6 +119,8 @@ if /i "%choice%" == "6" cls&Goto FLASH64
 if /i "%choice%" == "7" cls&Goto FLASHNEWHOPE64
 if /i "%choice%" == "8" cls&Goto MENUPAD
 if /i "%choice%" == "9" cls&Goto MENUPLANCK
+if /i "%choice%" == "10" cls&Goto FLASHOMEGA40
+if /i "%choice%" == "11" cls&Goto FLASHVOLTA9
 if /i "%choice%" == "0" cls&Goto TEST
 if /i "%choice%" == "L" cls&Goto LIST
 if /i "%choice%" == "C" cls&Goto GOCMD
@@ -346,6 +352,20 @@ pause
 echo 按任意键继续
 Goto End
 
+:FLASHOMEGA40
+echo 正在刷写Omega40 Rev.A固件，请稍后...
+%ocdcmd1% ..\\hex\\Omega40-a-nrf52_all-%ver%.hex %ocdcmd2%
+pause
+echo 按任意键继续
+Goto End
+
+:FLASHVOLTA9
+echo 正在刷写Volta9 Rev.A固件，请稍后...
+%ocdcmd1% ..\\hex\\volta9-a-nrf52810_kbd_with_sd-%ver%.hex %ocdcmd2%
+pause
+echo 按任意键继续
+Goto End
+
 :FLASH84
 echo 正在刷写Omega84固件，请稍后...
 %ocdcmd1% ..\\hex\\Omega84-nrf52_all-%ver%.hex %ocdcmd2%
@@ -399,7 +419,7 @@ Goto End
 
 REM ======查看烧录器======
 :LIST
-MODE con: Cols=60 Lines=40
+MODE con: Cols=50 Lines=36
 echo 查看是否正常显示烧录器
 %ocdcmd4%
 pause
