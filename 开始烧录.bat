@@ -11,6 +11,7 @@ Set var=0
 Title CMSIS-DAP烧录 %tle%
 MODE con: Cols=50 Lines=36
 Color 3F
+GOTO USEPYOCD
 
 REM ======首先选择烧录工具======
 :CHO
