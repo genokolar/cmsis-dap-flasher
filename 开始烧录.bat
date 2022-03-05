@@ -3,8 +3,8 @@
 :Init
 REM ======设置编码为utf8======
 chcp 65001
-set ver=20220116-11dd5b41
-Set tle=版本:SDK17.1 %ver:~-8%
+set ver=20220303-11e13034
+Set tle=固件日期:%ver:~-0,8%
 Set var=0
 
 :Start
@@ -73,7 +73,7 @@ Title CMSIS-DAP烧录 %tle%
 MODE con: Cols=50 Lines=36
 Color 3F
 cls
-echo 「 完整固件烧录 %tle% 」
+echo 「 完整固件烧录 版本：%ver% 」
 echo.
 echo 选项:
 echo       [1].   烧录固件 Farad69
