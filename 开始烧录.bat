@@ -3,7 +3,7 @@
 :Init
 REM ======设置编码为utf8======
 chcp 65001
-set ver=20220303-11e13034
+set ver=yyyymmdd-xxxxxxxx
 Set tle=固件日期:%ver:~-0,8%
 Set var=0
 
