@@ -117,7 +117,7 @@ if /i "%choice%" == "3" cls&Goto MENUBLE60
 if /i "%choice%" == "4" cls&Goto MENUOMEGA45
 if /i "%choice%" == "5" cls&Goto FLASH84
 if /i "%choice%" == "6" cls&Goto FLASH64
-if /i "%choice%" == "7" cls&Goto FLASHNEWHOPE64
+if /i "%choice%" == "7" cls&Goto MENUNEWHOPE64
 if /i "%choice%" == "8" cls&Goto MENUPAD
 if /i "%choice%" == "9" cls&Goto MENUPLANCK
 if /i "%choice%" == "10" cls&Goto FLASHOMEGA40
@@ -260,6 +260,31 @@ if /i "%choice%" == "R" cls&Goto Menu
 Set var=1
 Goto MENUPAD
 
+:MENUNEWHOPE64
+cls
+echo 「 选择 GT PAD 版本 」
+echo.
+echo 选项:
+echo       [1].   烧录固件 NewHope64 Rev.A
+echo.
+echo       [2].   烧录固件 NewHope64 Rev.B
+echo.
+echo       [R].   返回上一级
+echo.
+echo ---------------------------------------
+if %var% neq 0 echo (输入无效请重新输入)
+Set choice=
+Set /p choice=选择: 
+Set "choice=%choice:"=%"
+if "%choice:~-1%"=="=" Goto Menu
+if "%choice%"=="" Goto Menu
+if /i "%choice%" == "1" cls&Goto FLASHNEWHOPE64A
+if /i "%choice%" == "2" cls&Goto FLASHNEWHOPE64B
+if /i "%choice%" == "R" cls&Goto Menu
+Set var=1
+Goto MENUNEWHOPE64
+
+
 :MENUPLANCK
 cls
 echo 「 选择GT Planck的芯片版本 」
@@ -384,9 +409,16 @@ pause
 echo 按任意键继续
 Goto End
 
-:FLASHNEWHOPE64
-echo 正在刷写NewHope64固件，请稍后...
-%ocdcmd1% ..\\hex\\newhope64-nrf52832_all-%ver%.hex %ocdcmd2%
+:FLASHNEWHOPE64A
+echo 正在刷写NewHope64 Rev.A 固件，请稍后...
+%ocdcmd1% ..\\hex\\newhope64-a-nrf52832_all-%ver%.hex %ocdcmd2%
+pause
+echo 按任意键继续
+Goto End
+
+:FLASHNEWHOPE64B
+echo 正在刷写NewHope64 REV.B 固件，请稍后...
+%ocdcmd1% ..\\hex\\newhope64-b-nrf52810_all-%ver%.hex %ocdcmd2%
 pause
 echo 按任意键继续
 Goto End
