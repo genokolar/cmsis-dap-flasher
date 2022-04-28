@@ -188,6 +188,8 @@ echo       [1].   烧录固件 GT BLE60 rev.E
 echo.
 echo       [2].   烧录固件 GT BLE60 rev.F
 echo.
+echo       [3].   烧录固件 GT BLE60 rev.G
+echo.
 echo       [R].   返回上一级
 echo.
 echo ---------------------------------------
@@ -199,6 +201,7 @@ if "%choice:~-1%"=="=" Goto Menu
 if "%choice%"=="" Goto Menu
 if /i "%choice%" == "1" cls&Goto FLASH60E
 if /i "%choice%" == "2" cls&Goto FLASH60F
+if /i "%choice%" == "3" cls&Goto FLASH60G
 if /i "%choice%" == "R" cls&Goto Menu
 Set var=1
 Goto MENUBLE60
@@ -349,6 +352,13 @@ Goto End
 :FLASH60F
 echo 正在刷写GT BLE60 Rev.F固件，请稍后...
 %ocdcmd1% ..\\hex\\gt-ble60-f-nrf52832_all-%ver%.hex %ocdcmd2%
+pause
+echo 按任意键继续
+Goto End
+
+:FLASH60G
+echo 正在刷写GT BLE60 Rev.G固件，请稍后...
+%ocdcmd1% ..\\hex\\gt-ble60-g-nrf52810_all-%ver%.hex %ocdcmd2%
 pause
 echo 按任意键继续
 Goto End
