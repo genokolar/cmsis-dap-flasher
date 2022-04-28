@@ -140,6 +140,8 @@ echo       [1].   烧录固件 Farad69 rev.B
 echo.
 echo       [2].   烧录固件 Farad69 rev.C
 echo.
+echo       [3].   烧录固件 Farad69 rev.D
+echo.
 echo       [R].   返回上一级
 echo.
 echo ---------------------------------------
@@ -151,6 +153,7 @@ if "%choice:~-1%"=="=" Goto Menu
 if "%choice%"=="" Goto Menu
 if /i "%choice%" == "1" cls&Goto FLASH69B
 if /i "%choice%" == "2" cls&Goto FLASH69C
+if /i "%choice%" == "3" cls&Goto FLASH69D
 if /i "%choice%" == "R" cls&Goto Menu
 Set var=1
 Goto MENUFARAD69
@@ -324,6 +327,13 @@ Goto End
 :FLASH69C
 echo 正在刷写Farad69 Rev.C固件，请稍后...
 %ocdcmd1% ..\\hex\\farad69-c-nrf52832_all-%ver%.hex %ocdcmd2%
+pause
+echo 按任意键继续
+Goto End
+
+:FLASH69D
+echo 正在刷写Farad69 Rev.D固件，请稍后...
+%ocdcmd1% ..\\hex\\farad69-d-nrf52810_all-%ver%.hex %ocdcmd2%
 pause
 echo 按任意键继续
 Goto End
