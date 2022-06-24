@@ -52,6 +52,7 @@ Set ocdcmd1=openocd -f nrf52.cfg -c init -c "reset init" -c "nrf5 mass_erase" -c
 Set ocdcmd2=verify" -c reset -c exit
 Set ocdcmd3= 
 Set ocdcmd4=openocd -c "adapter driver cmsis-dap" -c "init;cmsis-dap info"
+Set ocdcmd5=openocd -f nrf52.cfg -c init -c "reset init" -c "nrf5 mass_erase" -c exit
 cd openocd
 Goto Menu
 
@@ -63,6 +64,7 @@ Set ocdcmd1=pyocd flash -t nrf52 -e sector -f 1M
 Set ocdcmd2= 
 Set ocdcmd3=pyocd cmd -t nrf52 -c reset
 Set ocdcmd4=pyocd list
+Set ocdcmd5=pyocd erase -t nrf52 -c
 cd pyocd
 Goto Menu
 
@@ -100,6 +102,8 @@ echo       [11].  烧录固件 GT Volta9
 echo.
 echo       [L].   显示烧录器信息
 echo.
+echo       [O].   完全清空重置键盘
+echo.
 echo       [C].   手动输入命令
 echo.
 echo       [Ｑ].  退出
@@ -124,8 +128,9 @@ if /i "%choice%" == "10" cls&Goto FLASHOMEGA40
 if /i "%choice%" == "11" cls&Goto FLASHVOLTA9
 if /i "%choice%" == "0" cls&Goto TEST
 if /i "%choice%" == "L" cls&Goto LIST
+if /i "%choice%" == "O" cls&Goto CLEAN
 if /i "%choice%" == "C" cls&Goto GOCMD
-if /i "%choice%" == "q" Popd&Exit
+if /i "%choice%" == "Q" Popd&Exit
 Set var=1
 Goto Menu
 
@@ -484,12 +489,20 @@ Goto End
 
 REM ======查看烧录器======
 :LIST
-MODE con: Cols=50 Lines=36
 echo 查看是否正常显示烧录器
 %ocdcmd4%
 pause
 echo 按任意键继续
 Goto End
+
+REM ======完整清空重置键盘======
+:CLEAN
+echo 完整清空重置键盘
+%ocdcmd5%
+pause
+echo 按任意键继续
+Goto End
+
 
 REM ======手动命令行======
 :GOCMD
