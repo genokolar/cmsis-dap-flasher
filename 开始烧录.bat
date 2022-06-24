@@ -172,6 +172,8 @@ echo       [1].   烧录固件 Omega50 rev.A
 echo.
 echo       [2].   烧录固件 Omega50 rev.B
 echo.
+echo       [3].   烧录固件 Omega50 rev.B
+echo.
 echo       [R].   返回上一级
 echo.
 echo ---------------------------------------
@@ -183,6 +185,7 @@ if "%choice:~-1%"=="=" Goto Menu
 if "%choice%"=="" Goto Menu
 if /i "%choice%" == "1" cls&Goto FLASH50A
 if /i "%choice%" == "2" cls&Goto FLASH50B
+if /i "%choice%" == "3" cls&Goto FLASH50C
 if /i "%choice%" == "R" cls&Goto Menu
 Set var=1
 Goto MENUOMEGA50
@@ -273,7 +276,7 @@ Goto MENUPAD
 
 :MENUNEWHOPE64
 cls
-echo 「 选择 GT PAD 版本 」
+echo 「 选择 NewHope64 版本 」
 echo.
 echo 选项:
 echo       [1].   烧录固件 NewHope64 Rev.A
@@ -353,6 +356,13 @@ Goto End
 :FLASH50B
 echo 正在刷写Omega50 Rev.B固件，请稍后...
 %ocdcmd1% ..\\hex\\Omega50-b-nrf52832_all-%ver%.hex %ocdcmd2%
+pause
+echo 按任意键继续
+Goto End
+
+:FLASH50C
+echo 正在刷写Omega50 Rev.B固件，请稍后...
+%ocdcmd1% ..\\hex\\Omega50-c-nrf52810_all-%ver%.hex %ocdcmd2%
 pause
 echo 按任意键继续
 Goto End
