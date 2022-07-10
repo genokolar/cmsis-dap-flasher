@@ -124,7 +124,7 @@ if /i "%choice%" == "6" cls&Goto FLASH64
 if /i "%choice%" == "7" cls&Goto MENUNEWHOPE64
 if /i "%choice%" == "8" cls&Goto MENUPAD
 if /i "%choice%" == "9" cls&Goto MENUPLANCK
-if /i "%choice%" == "10" cls&Goto FLASHOMEGA40
+if /i "%choice%" == "10" cls&Goto MENUOMEGA40
 if /i "%choice%" == "11" cls&Goto FLASHVOLTA9
 if /i "%choice%" == "0" cls&Goto TEST
 if /i "%choice%" == "L" cls&Goto LIST
@@ -172,7 +172,7 @@ echo       [1].   烧录固件 Omega50 rev.A
 echo.
 echo       [2].   烧录固件 Omega50 rev.B
 echo.
-echo       [3].   烧录固件 Omega50 rev.B
+echo       [3].   烧录固件 Omega50 rev.C
 echo.
 echo       [R].   返回上一级
 echo.
@@ -324,6 +324,31 @@ Set var=1
 Goto MENUPLANCK
 
 
+:MENUOMEGA40
+cls
+echo 「 选择Omega40 Rev.A的芯片版本 」
+echo.
+echo 选项:
+echo       [1].   烧录固件 nRF52832芯片版
+echo.
+echo       [2].   烧录固件 nRF52811芯片版
+echo.
+echo       [R].   返回上一级
+echo.
+echo ---------------------------------------
+if %var% neq 0 echo (输入无效请重新输入)
+Set choice=
+Set /p choice=选择: 
+Set "choice=%choice:"=%"
+if "%choice:~-1%"=="=" Goto Menu
+if "%choice%"=="" Goto Menu
+if /i "%choice%" == "1" cls&Goto FLASHOMEGA4052832
+if /i "%choice%" == "2" cls&Goto FLASHOMEGA4052811
+if /i "%choice%" == "R" cls&Goto Menu
+Set var=1
+Goto MENUOMEGA40
+
+
 REM ======以下为键盘刷写命令======
 :FLASH69B
 echo 正在刷写Farad69 Rev.B固件，请稍后...
@@ -361,7 +386,7 @@ echo 按任意键继续
 Goto End
 
 :FLASH50C
-echo 正在刷写Omega50 Rev.B固件，请稍后...
+echo 正在刷写Omega50 Rev.C固件，请稍后...
 %ocdcmd1% ..\\hex\\Omega50-c-nrf52810_all-%ver%.hex %ocdcmd2%
 pause
 echo 按任意键继续
@@ -416,9 +441,16 @@ pause
 echo 按任意键继续
 Goto End
 
-:FLASHOMEGA40
+:FLASHOMEGA4052832
 echo 正在刷写Omega40 Rev.A固件，请稍后...
 %ocdcmd1% ..\\hex\\Omega40-a-nrf52832_all-%ver%.hex %ocdcmd2%
+pause
+echo 按任意键继续
+Goto End
+
+:FLASHOMEGA4052810
+echo 正在刷写Omega40 Rev.A固件，请稍后...
+%ocdcmd1% ..\\hex\\Omega40-a-nrf52810_all-%ver%.hex %ocdcmd2%
 pause
 echo 按任意键继续
 Goto End
