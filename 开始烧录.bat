@@ -11,7 +11,6 @@ Set var=0
 Title CMSIS-DAP烧录 %tle%
 MODE con: Cols=50 Lines=36
 Color 3F
-GOTO USEPYOCD
 
 REM ======首先选择烧录工具======
 :CHO
@@ -46,11 +45,13 @@ Goto CHO
 
 REM ======设置OpenOCD相关参数======
 :USEOPENOCD
+:: ocdcmd0 = 清空芯片  ocdcmd1=烧录命令前段 ocdcmd2=烧录命令后段
+:: ocdcmd3 = 重启芯片  ocdcmd4=列表烧录器   ocdcmd5=完整清空芯片
 Set PATH=%PATH%%~dp0%openocd;
-Set ocdcmd0= 
-Set ocdcmd1=openocd -f nrf52.cfg -c init -c "reset init" -c "nrf5 mass_erase" -c "program
-Set ocdcmd2=verify" -c reset -c exit
-Set ocdcmd3= 
+Set ocdcmd0=openocd -f nrf52.cfg -c init -c "reset init" -c "nrf5 mass_erase" -c exit 
+Set ocdcmd1=openocd -f nrf52.cfg -c "program
+Set ocdcmd2=verify reset" -c exit
+Set ocdcmd3=openocd -f nrf52.cfg -c init -c "reset run" -c exit 
 Set ocdcmd4=openocd -c "adapter driver cmsis-dap" -c "init;cmsis-dap info"
 Set ocdcmd5=openocd -f nrf52.cfg -c init -c "reset init" -c "nrf5 mass_erase" -c exit
 cd openocd
@@ -352,147 +353,189 @@ Goto MENUOMEGA40
 REM ======以下为键盘刷写命令======
 :FLASH69B
 echo 正在刷写Farad69 Rev.B固件，请稍后...
+%ocdcmd0%
 %ocdcmd1% ..\\hex\\farad69-b-nrf52832_all-%ver%.hex %ocdcmd2%
+%ocdcmd3%
 pause
 echo 按任意键继续
 Goto End
 
 :FLASH69C
 echo 正在刷写Farad69 Rev.C固件，请稍后...
+%ocdcmd0%
 %ocdcmd1% ..\\hex\\farad69-c-nrf52832_all-%ver%.hex %ocdcmd2%
+%ocdcmd3%
 pause
 echo 按任意键继续
 Goto End
 
 :FLASH69D
 echo 正在刷写Farad69 Rev.D固件，请稍后...
+%ocdcmd0%
 %ocdcmd1% ..\\hex\\farad69-d-nrf52810_all-%ver%.hex %ocdcmd2%
+%ocdcmd3%
 pause
 echo 按任意键继续
 Goto End
 
 :FLASH50A
 echo 正在刷写Omega50 Rev.A固件，请稍后...
+%ocdcmd0%
 %ocdcmd1% ..\\hex\\Omega50-a-nrf52832_all-%ver%.hex %ocdcmd2%
+%ocdcmd3%
 pause
 echo 按任意键继续
 Goto End
 
 :FLASH50B
 echo 正在刷写Omega50 Rev.B固件，请稍后...
+%ocdcmd0%
 %ocdcmd1% ..\\hex\\Omega50-b-nrf52832_all-%ver%.hex %ocdcmd2%
+%ocdcmd3%
 pause
 echo 按任意键继续
 Goto End
 
 :FLASH50C
 echo 正在刷写Omega50 Rev.C固件，请稍后...
+%ocdcmd0%
 %ocdcmd1% ..\\hex\\Omega50-c-nrf52810_all-%ver%.hex %ocdcmd2%
+%ocdcmd3%
 pause
 echo 按任意键继续
 Goto End
 
 :FLASH60E
 echo 正在刷写GT BLE60 Rev.E固件，请稍后...
+%ocdcmd0%
 %ocdcmd1% ..\\hex\\gt-ble60-e-nrf52832_all-%ver%.hex %ocdcmd2%
+%ocdcmd3%
 pause
 echo 按任意键继续
 Goto End
 
 :FLASH60F
 echo 正在刷写GT BLE60 Rev.F固件，请稍后...
+%ocdcmd0%
 %ocdcmd1% ..\\hex\\gt-ble60-f-nrf52832_all-%ver%.hex %ocdcmd2%
+%ocdcmd3%
 pause
 echo 按任意键继续
 Goto End
 
 :FLASH60G
 echo 正在刷写GT BLE60 Rev.G固件，请稍后...
+%ocdcmd0%
 %ocdcmd1% ..\\hex\\gt-ble60-g-nrf52810_all-%ver%.hex %ocdcmd2%
+%ocdcmd3%
 pause
 echo 按任意键继续
 Goto End
 
 :FLASH45C
 echo 正在刷写Omega45 Rev.C固件，请稍后...
+%ocdcmd0%
 %ocdcmd1% ..\\hex\\Omega45-c-nrf52832_all-%ver%.hex %ocdcmd2%
+%ocdcmd3%
 pause
 echo 按任意键继续
 Goto End
 
 :FLASH45D
 echo 正在刷写Omega45 Rev.D固件，请稍后...
+%ocdcmd0%
 %ocdcmd1% ..\\hex\\Omega45-d-nrf52832_all-%ver%.hex %ocdcmd2%
+%ocdcmd3%
 pause
 echo 按任意键继续
 Goto End
 
 :FLASH45E
 echo 正在刷写Omega45 Rev.E固件，请稍后...
+%ocdcmd0%
 %ocdcmd1% ..\\hex\\Omega45-e-nrf52832_all-%ver%.hex %ocdcmd2%
+%ocdcmd3%
 pause
 echo 按任意键继续
 Goto End
 
 :FLASH45F
 echo 正在刷写Omega45 Rev.F固件，请稍后...
+%ocdcmd0%
 %ocdcmd1% ..\\hex\\Omega45-f-nrf52832_all-%ver%.hex %ocdcmd2%
+%ocdcmd3%
 pause
 echo 按任意键继续
 Goto End
 
 :FLASHOMEGA4052832
 echo 正在刷写Omega40 Rev.A nRF52832芯片版固件，请稍后...
+%ocdcmd0%
 %ocdcmd1% ..\\hex\\Omega40-a-nrf52832_all-%ver%.hex %ocdcmd2%
+%ocdcmd3%
 pause
 echo 按任意键继续
 Goto End
 
 :FLASHOMEGA4052810
 echo 正在刷写Omega40 Rev.AnRF52810芯片版 固件，请稍后...
+%ocdcmd0%
 %ocdcmd1% ..\\hex\\Omega40-a-nrf52810_all-%ver%.hex %ocdcmd2%
+%ocdcmd3%
 pause
 echo 按任意键继续
 Goto End
 
 :FLASHVOLTA9
 echo 正在刷写Volta9 Rev.A固件，请稍后...
+%ocdcmd0%
 %ocdcmd1% ..\\hex\\volta9-a-nrf52810_all-%ver%.hex %ocdcmd2%
+%ocdcmd3%
 pause
 echo 按任意键继续
 Goto End
 
 :FLASH84
 echo 正在刷写Omega84固件，请稍后...
+%ocdcmd0%
 %ocdcmd1% ..\\hex\\Omega84-nrf52832_all-%ver%.hex %ocdcmd2%
+%ocdcmd3%
 pause
 echo 按任意键继续
 Goto End
 
 :FLASH64
 echo 正在刷写Omega64固件，请稍后...
+%ocdcmd0%
 %ocdcmd1% ..\\hex\\Omega64-nrf52832_all-%ver%.hex %ocdcmd2%
+%ocdcmd3%
 pause
 echo 按任意键继续
 Goto End
 
 :FLASHNEWHOPE64A
 echo 正在刷写NewHope64 Rev.A 固件，请稍后...
+%ocdcmd0%
 %ocdcmd1% ..\\hex\\newhope64-a-nrf52832_all-%ver%.hex %ocdcmd2%
+%ocdcmd3%
 pause
 echo 按任意键继续
 Goto End
 
 :FLASHNEWHOPE64B
 echo 正在刷写NewHope64 REV.B 固件，请稍后...
+%ocdcmd0%
 %ocdcmd1% ..\\hex\\newhope64-b-nrf52810_all-%ver%.hex %ocdcmd2%
+%ocdcmd3%
 pause
 echo 按任意键继续
 Goto End
 
 :FLASHPADA
 echo 正在刷写GT-Pad Rev.A固件，请稍后...
+%ocdcmd0%
 %ocdcmd1% ..\\hex\\gt-pad-a-nrf52832_all-%ver%.hex %ocdcmd2%
+%ocdcmd3%
 pause
 echo 按任意键继续
 Goto End
@@ -517,14 +560,18 @@ Goto End
 
 :FLASHPLANCK52832
 echo 正在刷写GT-PLANCK nRF52832芯片版固件，请稍后...
+%ocdcmd0%
 %ocdcmd1% ..\\hex\\gt-planck-a-nrf52832_all-%ver%.hex %ocdcmd2%
+%ocdcmd3%
 pause
 echo 按任意键继续
 Goto End
 
 :FLASHPLANCK52811
 echo 正在刷写GT-PLANCK nRF52811芯片版固件，请稍后...
+%ocdcmd0%
 %ocdcmd1% ..\\hex\\gt-planck-a-nrf52811_all-%ver%.hex %ocdcmd2%
+%ocdcmd3%
 pause
 echo 按任意键继续
 Goto End
