@@ -243,10 +243,34 @@ if "%choice%"=="" Goto Menu
 if /i "%choice%" == "1" cls&Goto FLASH45C
 if /i "%choice%" == "2" cls&Goto FLASH45D
 if /i "%choice%" == "3" cls&Goto FLASH45E
-if /i "%choice%" == "4" cls&Goto FLASH45F
+if /i "%choice%" == "4" cls&Goto MENUOMEGA45F
 if /i "%choice%" == "R" cls&Goto Menu
 Set var=1
 Goto MENUOMEGA45
+
+:MENUOMEGA45F
+cls
+echo 「 选择Omega45 Rev.F的芯片版本 」
+echo.
+echo 选项:
+echo       [1].   烧录固件 nRF52832芯片版
+echo.
+echo       [2].   烧录固件 nRF52810芯片版
+echo.
+echo       [R].   返回上一级
+echo.
+echo ---------------------------------------
+if %var% neq 0 echo (输入无效请重新输入)
+Set choice=
+Set /p choice=选择: 
+Set "choice=%choice:"=%"
+if "%choice:~-1%"=="=" Goto Menu
+if "%choice%"=="" Goto Menu
+if /i "%choice%" == "1" cls&Goto FLASHOMEGA45F52832
+if /i "%choice%" == "2" cls&Goto FLASHOMEGA45F52810
+if /i "%choice%" == "R" cls&Goto Menu
+Set var=1
+Goto MENUOMEGA45F
 
 :MENUPAD
 cls
@@ -459,10 +483,19 @@ pause
 echo 按任意键继续
 Goto End
 
-:FLASH45F
-echo 正在刷写Omega45 Rev.F固件，请稍后...
+:FLASHOMEGA45F52832
+echo 正在刷写Omega45 Rev.F固件(nRF52832芯片)，请稍后...
 %ocdcmd0%
 %ocdcmd1% ..\\hex\\Omega45-f-nrf52832_all-%ver%.hex %ocdcmd2%
+%ocdcmd3%
+pause
+echo 按任意键继续
+Goto End
+
+:FLASHOMEGA45F52810
+echo 正在刷写Omega45 Rev.F固件(nRF52810芯片)，请稍后...
+%ocdcmd0%
+%ocdcmd1% ..\\hex\\Omega45-f-nrf52810_all-%ver%.hex %ocdcmd2%
 %ocdcmd3%
 pause
 echo 按任意键继续
