@@ -11,7 +11,6 @@ Set var=0
 Title CMSIS-DAP烧录 %tle%
 MODE con: Cols=50 Lines=36
 Color 3F
-GOTO USEPYOCD
 
 REM ======首先选择烧录工具======
 :CHO
@@ -19,9 +18,9 @@ cls
 echo 「 选择烧录工具 」
 echo.
 echo 选项:
-echo       [1].   OpenOCD
+echo       [1].   PyOCD
 echo.
-echo       [2].   PyOCD
+echo       [2].   OpenOCD
 echo.
 echo       [Ｑ].  退出
 echo.
@@ -29,7 +28,7 @@ echo.
 echo.
 echo    OpenOCD 与 PyOCD 烧录效果一致
 echo.
-echo    如不明白区别可以随意选择
+echo    如不明白区别可以优先选择PyOCD
 echo.
 echo ---------------------------------------
 if %var% neq 0 echo (输入无效请重新输入)
@@ -38,8 +37,8 @@ Set /p choice=选择:
 Set "choice=%choice:"=%"
 if "%choice:~-1%"=="=" Goto Menu
 if "%choice%"=="" Goto Menu
-if /i "%choice%" == "1" cls&Goto USEOPENOCD
-if /i "%choice%" == "2" cls&Goto USEPYOCD
+if /i "%choice%" == "1" cls&Goto USEPYOCD
+if /i "%choice%" == "2" cls&Goto USEOPENOCD
 if /i "%choice%" == "q" Popd&Exit
 Set var=1
 Goto CHO
@@ -53,7 +52,7 @@ Set ocdcmd0=openocd -f nrf52.cfg -c init -c "reset init" -c "nrf5 mass_erase" -c
 Set ocdcmd1=openocd -f nrf52.cfg -c "program
 Set ocdcmd2=verify reset" -c exit
 Set ocdcmd3=openocd -f nrf52.cfg -c init -c "reset run" -c exit 
-Set ocdcmd4=openocd -c "adapter driver cmsis-dap" -c "init;cmsis-dap info"
+Set ocdcmd4=openocd -c "adapter driver cmsis-dap" -c "adapter speed 500" -c "init;cmsis-dap info"
 Set ocdcmd5=openocd -f nrf52.cfg -c init -c "reset init" -c "nrf5 mass_erase" -c exit
 cd openocd
 Goto Menu
@@ -81,33 +80,20 @@ echo 「 完整固件烧录 版本：%ver% 」
 echo.
 echo 选项:
 echo       [1].   烧录固件 Farad69
-echo.
 echo       [2].   烧录固件 Omega50
-echo.
 echo       [3].   烧录固件 GT BLE60
-echo.
 echo       [4].   烧录固件 Omega45
-echo.
 echo       [5].   烧录固件 Omega84
-echo.
 echo       [6].   烧录固件 Omega64
-echo.
 echo       [7].   烧录固件 NewHope64
-echo.
 echo       [8].   烧录固件 GT PAD
-echo.
 echo       [9].   烧录固件 GT Planck
-echo.
 echo       [10].  烧录固件 Omega40
-echo.
 echo       [11].  烧录固件 GT Volta9
 echo.
-echo       [L].   显示烧录器信息
-echo.
-echo       [R].   强制重启键盘
-echo.
+echo       [L].   显示烧录器信息 
+echo       [R].   强制重启键盘 
 echo       [O].   完全清空重置键盘
-echo.
 echo       [C].   手动输入命令
 echo.
 echo       [Ｑ].  退出
