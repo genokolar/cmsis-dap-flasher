@@ -104,6 +104,8 @@ echo       [11].  烧录固件 GT Volta9
 echo.
 echo       [L].   显示烧录器信息
 echo.
+echo       [R].   强制重启键盘
+echo.
 echo       [O].   完全清空重置键盘
 echo.
 echo       [C].   手动输入命令
@@ -131,6 +133,7 @@ if /i "%choice%" == "11" cls&Goto FLASHVOLTA9
 if /i "%choice%" == "0" cls&Goto TEST
 if /i "%choice%" == "L" cls&Goto LIST
 if /i "%choice%" == "O" cls&Goto CLEAN
+if /i "%choice%" == "R" cls&Goto RESET
 if /i "%choice%" == "C" cls&Goto GOCMD
 if /i "%choice%" == "Q" Popd&Exit
 Set var=1
@@ -622,6 +625,14 @@ REM ======完整清空重置键盘======
 :CLEAN
 echo 完整清空重置键盘
 %ocdcmd5%
+pause
+echo 按任意键继续
+Goto End
+
+REM ======重启键盘======
+:RESET
+echo 强制重启键盘
+%ocdcmd3%
 pause
 echo 按任意键继续
 Goto End
