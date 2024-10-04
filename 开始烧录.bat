@@ -287,6 +287,8 @@ echo       [2].   烧录固件 GT PAD rev.B
 echo.
 echo       [3].   烧录固件 GT PAD rev.C
 echo.
+echo       [4].   烧录固件 GT PAD rev.D
+echo.
 echo       [R].   返回上一级
 echo.
 echo ---------------------------------------
@@ -299,6 +301,7 @@ if "%choice%"=="" Goto Menu
 if /i "%choice%" == "1" cls&Goto FLASHPADA
 if /i "%choice%" == "2" cls&Goto FLASHPADB
 if /i "%choice%" == "3" cls&Goto FLASHPADC
+if /i "%choice%" == "4" cls&Goto FLASHPADD
 if /i "%choice%" == "R" cls&Goto Menu
 Set var=1
 Goto MENUPAD
@@ -590,6 +593,15 @@ Goto End
 echo 正在刷写GT-Pad Rev.C固件，请稍后...
 %ocdcmd0%
 %ocdcmd1% ..\\hex\\gt-pad-c-nrf52810_all-%ver%.hex %ocdcmd2%
+%ocdcmd3%
+pause
+echo 按任意键继续
+Goto End
+
+:FLASHPADD
+echo 正在刷写GT-Pad Rev.D固件，请稍后...
+%ocdcmd0%
+%ocdcmd1% ..\\hex\\gt-pad-d-nrf52810_all-%ver%.hex %ocdcmd2%
 %ocdcmd3%
 pause
 echo 按任意键继续
