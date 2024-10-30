@@ -10,6 +10,7 @@ Set var=0
 :Start
 Title CMSIS-DAP烧录 %tle%
 MODE con: Cols=50 Lines=36
+MODE CON: BUFFER=120 3000
 Color 3F
 
 REM ======首先选择烧录工具======
@@ -54,6 +55,7 @@ Set ocdcmd2=verify reset" -c exit
 Set ocdcmd3=openocd -f nrf52.cfg -c init -c "reset run" -c exit 
 Set ocdcmd4=openocd -c "adapter driver cmsis-dap" -c "adapter speed 500" -c "init;cmsis-dap info"
 Set ocdcmd5=openocd -f nrf52.cfg -c init -c "reset init" -c "nrf5 mass_erase" -c exit
+set ocdcmd6="openocd -f nrf52.cfg -c init -c 'nrf5 info' -c exit"
 cd openocd
 Goto Menu
 
@@ -66,6 +68,7 @@ Set ocdcmd2=
 Set ocdcmd3=pyocd cmd -t nrf52 -c reset
 Set ocdcmd4=pyocd list
 Set ocdcmd5=pyocd erase -t nrf52 -c
+set ocdcmd6=
 cd pyocd
 Goto Menu
 
@@ -319,7 +322,31 @@ Goto MENUNEWHOPE64
 
 :MENUPLANCK
 cls
-echo 「 选择GT Planck的芯片版本 」
+echo 「 选择 GT Planck 版本 」
+echo.
+echo 选项:
+echo       [1].   烧录固件 GT Planck rev.A
+echo.
+echo       [2].   烧录固件 GT Planck rev.B
+echo.
+echo       [R].   返回上一级
+echo.
+echo ---------------------------------------
+if %var% neq 0 echo (输入无效请重新输入)
+Set choice=
+Set /p choice=选择: 
+Set "choice=%choice:"=%"
+if "%choice:~-1%"=="=" Goto Menu
+if "%choice%"=="" Goto Menu
+if /i "%choice%" == "1" cls&Goto MENUPLANCKA
+if /i "%choice%" == "2" cls&Goto FLASHPLANCKB
+if /i "%choice%" == "R" cls&Goto Menu
+Set var=1
+Goto MENUPLANCK
+
+:MENUPLANCKA
+cls
+echo 「 选择GT Planck Rev.A的芯片版本 」
 echo.
 echo 选项:
 echo       [1].   烧录固件 nRF52832芯片版
@@ -335,12 +362,11 @@ Set /p choice=选择:
 Set "choice=%choice:"=%"
 if "%choice:~-1%"=="=" Goto Menu
 if "%choice%"=="" Goto Menu
-if /i "%choice%" == "1" cls&Goto FLASHPLANCK52832
-if /i "%choice%" == "2" cls&Goto FLASHPLANCK52811
+if /i "%choice%" == "1" cls&Goto FLASHPLANCKA52832
+if /i "%choice%" == "2" cls&Goto FLASHPLANCKA52811
 if /i "%choice%" == "R" cls&Goto Menu
 Set var=1
-Goto MENUPLANCK
-
+Goto MENUPLANCKA
 
 :MENUOMEGA40
 cls
@@ -593,7 +619,7 @@ pause
 echo 按任意键继续
 Goto End
 
-:FLASHPLANCK52832
+:FLASHPLANCKA52832
 echo 正在刷写GT-PLANCK nRF52832芯片版固件，请稍后...
 %ocdcmd0%
 %ocdcmd1% ..\\hex\\gt-planck-a-nrf52832_all-%ver%.hex %ocdcmd2%
@@ -602,10 +628,19 @@ pause
 echo 按任意键继续
 Goto End
 
-:FLASHPLANCK52811
+:FLASHPLANCKA52811
 echo 正在刷写GT-PLANCK nRF52811芯片版固件，请稍后...
 %ocdcmd0%
 %ocdcmd1% ..\\hex\\gt-planck-a-nrf52811_all-%ver%.hex %ocdcmd2%
+%ocdcmd3%
+pause
+echo 按任意键继续
+Goto End
+ 
+:FLASHPLANCKB
+echo 正在刷写GT-PLANCK Rev.B nRF52810芯片版固件，请稍后...
+%ocdcmd0%
+%ocdcmd1% ..\\hex\\gt-planck-b-nrf52810_all-%ver%.hex %ocdcmd2%
 %ocdcmd3%
 pause
 echo 按任意键继续
