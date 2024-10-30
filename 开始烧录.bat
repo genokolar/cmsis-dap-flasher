@@ -54,8 +54,8 @@ Set ocdcmd1=openocd -f nrf52.cfg -c "program
 Set ocdcmd2=verify reset" -c exit
 Set ocdcmd3=openocd -f nrf52.cfg -c init -c "reset run" -c exit 
 Set ocdcmd4=openocd -c "adapter driver cmsis-dap" -c "adapter speed 500" -c "init;cmsis-dap info"
-Set ocdcmd5=openocd -f nrf52.cfg -c init -c "reset init" -c "nrf5 mass_erase" -c exit
-set ocdcmd6="openocd -f nrf52.cfg -c init -c 'nrf5 info' -c exit"
+Set ocdcmd5=openocd -f nrf52.cfg -c init -c "reset init" -c "nrf5 eraseall" -c exit
+set ocdcmd6=openocd -f nrf52.cfg -c init -c 'nrf5 info' -c exit
 cd openocd
 Goto Menu
 
@@ -67,8 +67,7 @@ Set ocdcmd1=pyocd flash -t nrf52 -e sector -f 1M
 Set ocdcmd2= 
 Set ocdcmd3=pyocd cmd -t nrf52 -c reset
 Set ocdcmd4=pyocd list
-Set ocdcmd5=pyocd erase -t nrf52 -c
-set ocdcmd6=
+Set ocdcmd5=pyocd erase --mass -t nrf52 -c
 cd pyocd
 Goto Menu
 
@@ -96,7 +95,7 @@ echo       [11].  烧录固件 GT Volta9
 echo.
 echo       [L].   显示烧录器信息 
 echo       [R].   强制重启键盘 
-echo       [O].   完全清空重置键盘
+echo       [O].   完全清空键盘芯片
 echo       [C].   手动输入命令
 echo.
 echo       [Ｑ].  退出
