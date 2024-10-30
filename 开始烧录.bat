@@ -49,13 +49,12 @@ REM ======设置OpenOCD相关参数======
 :: ocdcmd0 = 清空芯片  ocdcmd1=烧录命令前段 ocdcmd2=烧录命令后段
 :: ocdcmd3 = 重启芯片  ocdcmd4=列表烧录器   ocdcmd5=完整清空芯片
 Set PATH=%PATH%%~dp0%openocd;
-Set ocdcmd0=openocd -f nrf52.cfg -c init -c "reset init" -c "nrf5 mass_erase" -c exit 
+Set ocdcmd0=openocd -f nrf52.cfg -c init -c "reset halt" -c "nrf5 mass_erase" -c exit 
 Set ocdcmd1=openocd -f nrf52.cfg -c "program
 Set ocdcmd2=verify reset" -c exit
 Set ocdcmd3=openocd -f nrf52.cfg -c init -c "reset run" -c exit 
 Set ocdcmd4=openocd -c "adapter driver cmsis-dap" -c "adapter speed 500" -c "init;cmsis-dap info"
-Set ocdcmd5=openocd -f nrf52.cfg -c init -c "reset init" -c "nrf5 eraseall" -c exit
-set ocdcmd6=openocd -f nrf52.cfg -c init -c 'nrf5 info' -c exit
+Set ocdcmd5=openocd -f nrf52.cfg -c init -c "reset halt" -c "nrf5 mass_erase" -c exit
 cd openocd
 Goto Menu
 
@@ -67,7 +66,7 @@ Set ocdcmd1=pyocd flash -t nrf52 -e sector -f 1M
 Set ocdcmd2= 
 Set ocdcmd3=pyocd cmd -t nrf52 -c reset
 Set ocdcmd4=pyocd list
-Set ocdcmd5=pyocd erase --mass -t nrf52 -c
+Set ocdcmd5=pyocd erase --mass -t nrf52
 cd pyocd
 Goto Menu
 
